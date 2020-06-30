@@ -1,0 +1,51 @@
+html {
+    background: #cfcfcf;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid black;
+    background: rgb(131, 205, 240);
+    font-size: 18px;
+}
+
+th {
+    background-color: #cfcfcf;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+
+}
+
+td {
+    width: 40px;
+    height: 40px;
+    border: 2px solid black;
+    font-size: 24px;
+    text-align: center;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+.chess-color-white {
+    color: white;
+}
+
+.chess-color-black {
+    color: black;
+}
+
+.cell-white {
+    background-color: #FFCF73;
+}
+
+.cell-black {
+    background-color: #7A5000;
+    ;
+}
+
+.cell-active {
+    background-color: darkseagreen;
+}

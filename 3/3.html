@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="packages/animate/animate.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
@@ -14,26 +15,27 @@
         animi a assumenda nemo dolorum, neque est, necessitatibus quod. Veniam maxime consequuntur ipsam repudiandae
         vel.
 
-        <a href="#" class="button">Показать модальное окно</a>
-
-        <div class="modal hide">
-            <div class="modal__container">
-                <h3 class="modal__title">Заголовок модального окна</h3>
-                <div class="modal__content">
-                    <p class="modal__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa magni voluptas
-                        optio
-                        eos
-                        perferendis. Reiciendis, tenetur omnis. Cumque, temporibus. Doloribus similique eos voluptate
-                        impedit,
-                        labore laboriosam nemo eveniet natus amet.</p>
-                    <div class="modal__buttons">
-                        <a href="#" class="button modal__button_ok">Ок</a>
-                        <a href="#" class="button modal__button_cancel">Отмена</a>
-                    </div>
+        <button class="button">Показать модальное окно</button>
+    </div>
+    <div class="modal hide">
+        <div class="modal__container">
+            <h3 class="modal__title">Заголовок модального окна</h3>
+            <div class="modal__content">
+                <p class="modal__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa magni voluptas
+                    optio
+                    eos
+                    perferendis. Reiciendis, tenetur omnis. Cumque, temporibus. Doloribus similique eos voluptate
+                    impedit,
+                    labore laboriosam nemo eveniet natus amet.</p>
+                <div class="modal__buttons">
+                    <button class="button">Ок</button>
+                    <button class="button">Отмена</button>
                 </div>
             </div>
         </div>
     </div>
+    <script src="packages/jquery/jquery-3.2.1.min.js"></script>
+    <script src="packages/viewport-checker/jquery.viewportchecker.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 
