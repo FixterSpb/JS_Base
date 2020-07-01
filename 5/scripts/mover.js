@@ -434,12 +434,18 @@ let mover = {
         //Передаем ход другому игроку
         if (this.player === PLAYER_WHITE) {
             this.player = PLAYER_BLACK;
+            document.querySelector('.player').innerText = "Ход чёрных";
         } else {
             this.player = PLAYER_WHITE;
+            document.querySelector('.player').innerText = "Ход белых";
         };
 
     },
 
+    /**
+     * Метод осуществляет ракировку в случае возможности.
+     * @param {object} cell Клетка назначения
+     */
     moveCastling(cell) {
 
         let figureName = this.getFigureName(this.cellChoiced.cell.firstChild);
@@ -450,6 +456,10 @@ let mover = {
             } else {
                 this.removeCastling([7]);
             }
+            return;
+        }
+
+        if (figureName !== 'king') {
             return;
         }
 
@@ -479,7 +489,7 @@ let mover = {
 
     removeCastling(x) {
         for (let i = 0; i < x.length; i++) {
-            this.avaibleCells.forEach(function (cell) {
+            document.querySelectorAll(`[data-y='${this.cellChoiced.y}'][data-castling='true']`).forEach(function (cell) {
                 if (cell.dataset.castling !== undefined && cell.dataset.x == x[i]) {
                     cell.removeAttribute("data-castling");
                 }

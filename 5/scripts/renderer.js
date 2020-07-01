@@ -5,7 +5,9 @@ let renderer = {
      */
     renderBoard() {
         let result = this.generateBoard();
-        document.body.insertAdjacentHTML("afterbegin", result);
+        let plaeyrText = document.querySelector('.player');
+
+        document.body.insertAdjacentHTML("afterend", result);
         //this.renderUserPosition(player);
     },
 
