@@ -82,6 +82,36 @@ let mover = {
         };
     },
 
+    /**
+     * Метод проверяет можно ли поставить фигуру в клетку cell и добавляет ячейку в cells
+     * @param {object} cell добавляемая клетка
+     * @param {array} cells массив, куда добакляется клетка
+     * @returns {boolean} true - если клетка пустая, false - если клетка не существует или в ней стоит фигура
+     */
+    cellAddToCells(cell, cells) {
+        if (cell === null) {
+            //клетка не существует
+            return false;
+        }
+        if (cell.firstChild == null) {
+            //Пустая клетка
+            cells.push(cell);
+            return true;
+        } else if (this.getFigureColor(cell.firstChild) !== this.player) {
+            //В клетке фигура противника
+            cells.push(cell);
+            return false;
+        } else {
+            //В клетке своя фигура
+            return false;
+        }
+
+    },
+
+    /**
+     * Метод возвращает возможные ходы короля
+     * @return {array} Массив из ячеек, в которые можно пойти
+     */
     getAvaibleCellsKing() {
         let cells = [];
         let possiblePositions = [{
@@ -123,33 +153,27 @@ let mover = {
             this.cellAddToCells(document.querySelector(`[data-x="${possiblePositions[i].x}"][data-y="${possiblePositions[i].y}"`), cells);
         }
 
+
+        //Ракировка вправо
+        if (document.querySelector(`[data-x="7"][data-y='${this.cellChoiced.y}'][data-castling='true']`) !== null && //Возможность ракировки
+            document.querySelector(`[data-x="6"][data-y="${this.cellChoiced.y}"`).firstChild === null && //Пустая клетка
+            document.querySelector(`[data-x="7"][data-y="${this.cellChoiced.y}"`).firstChild === null //Пустая клетка
+        ) {
+
+            cells.push(document.querySelector(`[data-x="7"][data-y="${this.cellChoiced.y}"`));
+        }
+
+        //Ракировка влево
+        if (document.querySelector(`[data-x="3"][data-y='${this.cellChoiced.y}'][data-castling='true']`) !== null && //Возможность ракировки
+            document.querySelector(`[data-x="4"][data-y="${this.cellChoiced.y}"`).firstChild === null && //Пустая клетка
+            document.querySelector(`[data-x="3"][data-y="${this.cellChoiced.y}"`).firstChild === null && //Пустая клетка
+            document.querySelector(`[data-x="2"][data-y="${this.cellChoiced.y}"`).firstChild === null //Пустая клетка
+        ) {
+
+            cells.push(document.querySelector(`[data-x="3"][data-y="${this.cellChoiced.y}"`));
+        }
+
         return cells;
-    },
-
-    /**
-     * Метод проверяет можно ли поставить фигуру в клетку cell и добавляет ячейку в cells
-     * @param {object} cell добавляемая клетка
-     * @param {array} cells массив, куда добакляется клетка
-     * @returns {boolean} true - если клетка пустая, false - если клетка не существует или в ней стоит фигура
-     */
-    cellAddToCells(cell, cells) {
-        if (cell === null) {
-            //клетка не существует
-            return false;
-        }
-        if (cell.firstChild == null) {
-            //Пустая клетка
-            cells.push(cell);
-            return true;
-        } else if (this.getFigureColor(cell.firstChild) !== this.player) {
-            //В клетке фигура противника
-            cells.push(cell);
-            return false;
-        } else {
-            //В клетке своя фигура
-            return false;
-        }
-
     },
 
     /**
@@ -397,6 +421,9 @@ let mover = {
         }
         cell.appendChild(newFigure);
 
+        //Ракировка
+        this.moveCastling(cell);
+
         //Удаляем фигуру со страрой клетки
         this.cellChoiced.cell.firstChild.remove();
 
@@ -409,6 +436,54 @@ let mover = {
             this.player = PLAYER_BLACK;
         } else {
             this.player = PLAYER_WHITE;
+        };
+
+    },
+
+    moveCastling(cell) {
+
+        let figureName = this.getFigureName(this.cellChoiced.cell.firstChild);
+
+        if (figureName == 'rook') {
+            if (this.cellChoiced.x === 1) {
+                this.removeCastling([3]);
+            } else {
+                this.removeCastling([7]);
+            }
+            return;
+        }
+
+        if (cell.dataset.castling !== undefined) {
+            //Передвигаем ладью
+
+            let chessColor = 'chess-color-black';
+            if (this.player !== PLAYER_BLACK) {
+                chessColor = 'chess-color-white';
+            }
+            //Ракировка влево
+            if (cell.dataset.x == 3) {
+                document.querySelector(`[data-x='1'][data-y='${this.cellChoiced.y}'`).firstChild.remove();
+                document.querySelector(`[data-x='4'][data-y='${this.cellChoiced.y}'`).innerHTML = `<i class = "fas fa-chess-rook ${chessColor}"></i>`;
+            }
+
+            //Ракировка вправо
+            if (cell.dataset.x == 7) {
+                document.querySelector(`[data-x='8'][data-y='${this.cellChoiced.y}'`).firstChild.remove();
+                document.querySelector(`[data-x='6'][data-y='${this.cellChoiced.y}'`).innerHTML = `<i class = "fas fa-chess-rook ${chessColor}"></i>`;
+            }
+        }
+
+        this.removeCastling([3, 7]);
+        console.log("Ракировка");
+    },
+
+    removeCastling(x) {
+        for (let i = 0; i < x.length; i++) {
+            this.avaibleCells.forEach(function (cell) {
+                if (cell.dataset.castling !== undefined && cell.dataset.x == x[i]) {
+                    cell.removeAttribute("data-castling");
+                }
+            });
         };
 
     },

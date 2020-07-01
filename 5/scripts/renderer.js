@@ -14,29 +14,68 @@ let renderer = {
      * @returns {string} сгенерированный html-код таблицы(игрового поля).
      */
     generateBoard() {
-        const COLOR_WHITE = 'class="cell-white"';
-        const COLOR_BLACK = 'class="cell-black"';
+
         let board = "";
         for (let y = 0; y <= config.rowsCount + 1; y++) {
+
             board += "<tr>";
             for (let x = 0; x <= config.colsCount + 1; x++) {
-                if (x === 0 || y === 0 || y === config.rowsCount + 1 ||
-                    x === config.colsCount + 1) {
+
+                //Заголовки строк и столбцов
+                if (this.generateHead(x, y)) {
                     board += `<th data-head-x="${x}" data-head-y="${y}">${this.getSymbolHead(x, y)}</th>`;
                     continue;
                 }
-
-                if ((x + y) % 2 == 0) {
-                    board += `<td ${COLOR_WHITE}' `;
-                } else {
-                    board += `<td ${COLOR_BLACK}' `;
-                }
-                board += `data-x="${x}" data-y="${y}">${this.getFigure(x, y)}</i></td>`;
+                board += this.getTd(x, y);
             }
 
             board += "</tr>";
         }
         return `<table><tbody>${board}</tbody></table>`;
+    },
+
+    /**
+     * Метод возвращает сформированную ячейку td
+     * @param {number} x координата
+     * @param {number} y координата
+     */
+
+    getTd(x, y) {
+        const COLOR_WHITE = 'class="cell-white"';
+        const COLOR_BLACK = 'class="cell-black"';
+
+        if ((x + y) % 2 == 0) {
+            return `<td ${COLOR_WHITE}' data-x="${x}" data-y="${y}" ${this.castling(x, y)}>${this.getFigure(x, y)}</i></td>`;
+        } else {
+            return `<td ${COLOR_BLACK}' data-x="${x}" data-y="${y}" ${this.castling(x, y)}>${this.getFigure(x, y)}</i></td>`;
+        }
+    },
+
+    /**
+     * Метод возвращает строку, указывающую на возможность ракировки
+     * @param {number} x координата
+     * @param {number} y координата
+     * 
+     */
+    castling(x, y) {
+        if (x === 3 && y === 1 ||
+            x === 3 && y === 8 ||
+            x === 7 && y === 1 ||
+            x === 7 && y === 8) {
+            return "data-castling='true'";
+        } else {
+            return '';
+        }
+    },
+
+    /**
+     * Метод определяет является ли ячейка заголовком
+     * @param {number} x координата
+     * @param {number} y координата
+     * @returns {boolean}
+     */
+    generateHead(x, y) {
+        return x === 0 || y === 0 || y === config.rowsCount + 1 || x === config.colsCount + 1;
     },
 
     /**
@@ -92,12 +131,12 @@ let renderer = {
                     return `<i class = "fas fa-chess-rook ${chessColor}"></i>`;
                 case 2:
                 case 7:
-                    return `<i class="fas fa-chess-knight ${chessColor}"></i>`;
+                    return '' //`<i class="fas fa-chess-knight ${chessColor}"></i>`;
                 case 3:
                 case 6:
-                    return `<i class="fas fa-chess-bishop ${chessColor}"></i>`;
+                    return '' //`<i class="fas fa-chess-bishop ${chessColor}"></i>`;
                 case 4:
-                    return `<i class="fas fa-chess-queen ${chessColor}"></i>`;
+                    return '' //`<i class="fas fa-chess-queen ${chessColor}"></i>`;
                 case 5:
                     return `<i class="fas fa-chess-king ${chessColor}"></i>`;
                 default:
@@ -107,31 +146,4 @@ let renderer = {
 
     }
 
-    // /**
-    //  * Если ячейка с переданными координатами есть, то возвращается ее объект,
-    //  * а иначе null.
-    //  * @param {{x: number, y: number}} position объект с координатами.
-    //  * @returns {HTMLTableCellElement|null} объект ячейки если есть, в противном случае null.
-    //  */
-    // getSquare(position) {
-    //     return document.querySelector(`[data-x="${position.x}"][data-y="${position.y}"]`);
-    // },
-
-    // /**
-    //  * Метод рисует расположение пользвателя для указанной координаты.
-    //  * Для этого он добавляет тегу td класс ".user".
-    //  * @param {{x: number, y: number}} position
-    //  */
-    // renderUserPosition(position) {
-    //     let square = this.getSquare(position);
-    //     square.classList.add("user");
-    // },
-
-    // /**
-    //  * Метод удаляет пользователя с игрового поля. У тега td удаляет
-    //  * класс ".user".
-    //  */
-    // clearUserPosition() {
-    //     document.querySelector(".user").classList.remove("user");
-    // }
 };

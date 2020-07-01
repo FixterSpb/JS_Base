@@ -35,10 +35,6 @@ function modalShow(element) {
     element.classList.remove('hide');
 }
 
-jQuery('.modal').viewportChecker({
-    classToAdd: 'animated fadeIn'
-});
-
 let buttons = document.querySelectorAll('.button');
 buttons.forEach((button) => button.addEventListener('click', onClick));
 
