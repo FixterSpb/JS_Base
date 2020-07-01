@@ -68,7 +68,15 @@ let renderer = {
      * @param {*} y 
      */
     getFigure(x, y) {
+
         if (y > 2 && y < 7) {
+            /* Это для проверки ходов
+            if (y == 5 && x == 4) {
+                return `<i class = "fas fa-chess-king chess-color-white"></i>`;
+            };
+            if (y == 6 && x == 3) {
+                return `<i class = "fas fa-chess-king chess-color-black"></i>`;
+            };*/
             return '';
         }
         let chessColor = 'chess-color-black';
@@ -92,6 +100,8 @@ let renderer = {
                     return `<i class="fas fa-chess-queen ${chessColor}"></i>`;
                 case 5:
                     return `<i class="fas fa-chess-king ${chessColor}"></i>`;
+                default:
+                    return "";
             }
         }
 

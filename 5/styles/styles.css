@@ -25,7 +25,7 @@ td {
     text-align: center;
 }
 
-i:hover {
+td:hover {
     cursor: pointer;
 }
 

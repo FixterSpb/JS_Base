@@ -1,4 +1,7 @@
+'use strict';
+
+//Размеры поля
 let config = {
-    rowsCount: 8,
-    colsCount: 8,
+    rowsCount: 8, //Количество строк
+    colsCount: 8, //Количество столбцов
 };
