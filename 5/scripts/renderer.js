@@ -131,12 +131,12 @@ let renderer = {
                     return `<i class = "fas fa-chess-rook ${chessColor}"></i>`;
                 case 2:
                 case 7:
-                    return '' //`<i class="fas fa-chess-knight ${chessColor}"></i>`;
+                    return `<i class="fas fa-chess-knight ${chessColor}"></i>`;
                 case 3:
                 case 6:
-                    return '' //`<i class="fas fa-chess-bishop ${chessColor}"></i>`;
+                    return `<i class="fas fa-chess-bishop ${chessColor}"></i>`;
                 case 4:
-                    return '' //`<i class="fas fa-chess-queen ${chessColor}"></i>`;
+                    return `<i class="fas fa-chess-queen ${chessColor}"></i>`;
                 case 5:
                     return `<i class="fas fa-chess-king ${chessColor}"></i>`;
                 default:
