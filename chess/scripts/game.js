@@ -2,12 +2,19 @@
 renderer.renderBoard();
 //Назначаем обработчики нажатия мыши
 
+
+
 let cells = document.querySelectorAll('td');
 cells.forEach(cell => cell.addEventListener('click', function (event) {
-    if (mover.figureIsChoiced()) {
-        mover.move(event);
+
+    console.dir(event);
+    if (figureChoiced.figureIsChoiced()) {
+        mover.move(event.currentTarget);
     } else {
-        mover.choice(event);
+        mover.choiceFigure(event.currentTarget);
     }
+
+
+    //console.dir(figureChoiced.getAvaibleCellsKing());
 
 }));

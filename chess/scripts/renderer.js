@@ -7,7 +7,7 @@ let renderer = {
         let result = this.generateBoard();
         let plaeyrText = document.querySelector('.player');
 
-        document.body.insertAdjacentHTML("afterend", result);
+        document.body.insertAdjacentHTML("beforeend", result);
         //this.renderUserPosition(player);
     },
 
@@ -146,6 +146,16 @@ let renderer = {
             }
         }
 
-    }
+    },
 
+    /**
+     * Метод превращает пешку в фигуру
+     * @param {HTMLTableCellElement} cell Клетка, в которой стоит пешка
+     */
+
+    pawnUpdate(cell) {
+        this.showCaseFigure(cell);
+    },
+
+    
 };
