@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 12px;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 4rem;
+    background-color: #cfcfcf;
+}
+
+button {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+}
+
+.products {
+    padding: 0 4rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+
+    &__name {
+        text-align: center;
+        padding: 1rem;
+        font-size: 2rem;
+    }
+
+    &__price {
+        color: darkgreen;
+        font-size: 2rem;
+        font-weight: 900;
+        margin: 10px auto;
+    }
+
+    &__button {
+        margin: 1rem 0;
+    }
+}
