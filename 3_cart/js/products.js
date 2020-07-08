@@ -5,6 +5,7 @@ let products = {
     init() {
         //Создаем товары на странице
         this.createProducts();
+        document.querySelector('.button-cart').addEventListener('click', () => this.bnCartClick());
     },
 
     /**
@@ -63,6 +64,19 @@ let products = {
      */
     productBnClick(event) {
         cart.add(event.currentTarget);
+    },
+
+    bnCartClick() {
+        let divCart = document.querySelector('.cart');
+        let table = divCart.querySelector('table');
+
+        if (table !== null) {
+            if (divCart.classList.contains('hide')) {
+                divCart.classList.remove('hide');
+            } else {
+                divCart.classList.add('hide');
+            }
+        }
     }
 
 }

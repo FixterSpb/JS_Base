@@ -49,3 +49,27 @@ button {
         margin: 1rem 0;
     }
 }
+
+table {
+    font-size: 1.5rem;
+}
+
+td,
+th {
+    padding: 5px;
+}
+
+.cart {
+    padding: 10px;
+    border: 1px solid black;
+    transition: display 3s;
+    position: absolute;
+    right: 30px;
+    top: 67px;
+    z-index: 50;
+    background-color: #fff;
+}
+
+.hide {
+    display: none;
+}

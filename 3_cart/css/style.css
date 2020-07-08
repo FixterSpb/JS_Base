@@ -1,7 +1,8 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 html {
@@ -9,8 +10,12 @@ html {
 }
 
 .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   padding: 1rem 4rem;
   background-color: #cfcfcf;
 }
@@ -22,14 +27,23 @@ button {
 
 .products {
   padding: 0 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .product {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin-top: 4rem;
 }
 
@@ -48,5 +62,30 @@ button {
 
 .product__button {
   margin: 1rem 0;
+}
+
+table {
+  font-size: 1.5rem;
+}
+
+td,
+th {
+  padding: 5px;
+}
+
+.cart {
+  padding: 10px;
+  border: 1px solid black;
+  -webkit-transition: display 3s;
+  transition: display 3s;
+  position: absolute;
+  right: 30px;
+  top: 67px;
+  z-index: 50;
+  background-color: #fff;
+}
+
+.hide {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */
