@@ -108,6 +108,7 @@ let cart = {
 
         index = this.products.length - 1;
         tr = document.createElement('tr');
+        tr.dataset.index = index;
         tr.dataset.id = this.products[index].id;
 
         td = document.createElement('td');
@@ -116,17 +117,26 @@ let cart = {
 
         td = document.createElement('td');
         td.innerText = this.products[index].price;
+        td.style.textAlign = 'center';
         tr.insertAdjacentElement('beforeend', td);
 
         td = document.createElement('td');
-        td.innerText = this.products[index].count;
+        td.innerHTML = `<i class="fas fa-minus-circle cart__bnTable" data-action="down"></i> ${this.products[index].count} <i class="fas fa-plus-circle cart__bnTable" data-action="up"></i>`;
+        td.style.textAlign = 'center';
+        td.addEventListener('click', event => this.bnTableClick(event.target));
         tr.insertAdjacentElement('beforeend', td);
 
         td = document.createElement('td');
         td.innerText = this.products[index].count * this.products[index].price;
+        td.style.textAlign = 'center';
         tr.insertAdjacentElement('beforeend', td);
 
         td = document.createElement('td');
+        td.classList.add('cart__bnTable');
+        td.innerHTML = '<i class="fas fa-trash-alt" data-action="remove"></i>';
+        td.style.textAlign = 'center';
+        td.addEventListener('click', event => this.bnTableClick(event.target));
+
         tr.insertAdjacentElement('beforeend', td);
 
         table.insertAdjacentElement('beforeend', tr);
@@ -172,6 +182,28 @@ let cart = {
         divCart.insertAdjacentElement('beforeend', table);
 
         return table;
+    },
+
+    bnTableClick(button) {
+        console.dir(button);
+        console.log(button.dataset.action);
+        let tr = button.parentNode.parentNode;
+        let id = +tr.dataset.id;
+        let index = +tr.dataset.index;
+        switch (button.dataset.action) {
+            case "up":
+                products[index].id++;
+                break;
+            case "down":
+                if (--products[index].id !== 0) {
+                    break;
+                }
+                case "remove":
+                    delete products[index];
+        };
+        console.dir(button.parentNode);
+        console.dir(button.parentNode.parentNode);
+        console.log(button.parentNode.parentNode.dataset.id);
     }
 
 }

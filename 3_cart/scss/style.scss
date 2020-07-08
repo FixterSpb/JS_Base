@@ -68,6 +68,10 @@ th {
     top: 67px;
     z-index: 50;
     background-color: #fff;
+
+    &__bnTable {
+        cursor: pointer;
+    }
 }
 
 .hide {

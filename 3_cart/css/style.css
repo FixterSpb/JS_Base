@@ -85,6 +85,10 @@ th {
   background-color: #fff;
 }
 
+.cart__bnTable {
+  cursor: pointer;
+}
+
 .hide {
   display: none;
 }
