@@ -120,10 +120,12 @@ let renderer = {
             };*/
             return '';
         }
+
         let chessColor = 'chess-color-black';
         if (y >= 7) {
             chessColor = 'chess-color-white';
         }
+
         if (y === 2 || y === 7) {
             return `<i class = "fas fa-chess-pawn ${chessColor}"></i>`;
         } else {
@@ -156,6 +158,4 @@ let renderer = {
     pawnUpdate(cell) {
         this.showCaseFigure(cell);
     },
-
-    
 };

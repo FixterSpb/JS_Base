@@ -90,11 +90,11 @@ let figureChoiced = {
 
         if (figure.classList.contains('chess-color-white')) {
             return PLAYER_WHITE;
-        };
+        }
 
         if (figure.classList.contains('chess-color-black')) {
             return PLAYER_BLACK;
-        };
+        }
     },
 
     /**
@@ -115,7 +115,7 @@ let figureChoiced = {
                 return this.getAvaibleCellsQueen();
             case 'king':
                 return this.getAvaibleCellsKing();
-        };
+        }
     },
 
     /**
@@ -405,4 +405,4 @@ let figureChoiced = {
     figureIsChoiced() {
         return this.cell !== null;
     },
-}
+};

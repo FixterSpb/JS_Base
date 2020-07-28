@@ -8,6 +8,4 @@ window.addEventListener('load', () => {
 
     board.init(status, game);
     game.init(status, board);
-    //game
-
 });

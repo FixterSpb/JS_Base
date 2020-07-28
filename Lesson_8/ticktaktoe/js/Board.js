@@ -4,15 +4,14 @@ class Board {
 
     constructor() {
         this.gameTableEl = document.getElementById('game');
-
     }
 
     init(status, game) {
+
         this.status = status;
         this.game = game;
         this.renderMap();
         this.initEventHandlers();
-
     }
 
     /**
@@ -43,20 +42,16 @@ class Board {
                     +event.target.dataset.col);
             })
         })
-        // this.gameTableEl.addEventListener('click', event => this.cellClickHandler(event));
     }
 
     /**
      * Заполняет ячейку в которую кликнул пользователь в событии event.
-     * @param {Event} event
-     * @param {HTMLElement} event.target
+     * @param {number} row номер строки
+     * @param {number} col номер столбца
      */
     fillCell(row, col) {
 
         // Заполняем ячейку и ставим значение в массиве, в свойстве mapValues.
         this.gameTableEl.querySelector(`[data-row='${row}'][data-col='${col}']`).innerText = this.status.phase;
     }
-
-
-
-}
+};

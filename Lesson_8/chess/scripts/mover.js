@@ -12,12 +12,12 @@ let mover = {
         //Если фигура уже выбрана - завершаем метод
         if (cell === null) {
             return;
-        };
+        }
 
         //Если в клетке нет фигуры - завершаем метод
         if (cell.firstChild === null) {
             return;
-        };
+        }
 
         if (figureChoiced.getFigureColor(cell.firstChild) !== this.player) {
             return;
@@ -35,12 +35,12 @@ let mover = {
         if (cell === figureChoiced.cell) {
             figureChoiced.clear();
             return;
-        };
+        }
 
         //Если клетка назначения отсутствует в массиве доступных ходов, завершаем метод
         if (!figureChoiced.avaibleCells.includes(cell)) {
             return;
-        };
+        }
 
         //Если в клетке стоит фигура противника - удаляем ее
         this.opponentKill(cell);
@@ -51,7 +51,7 @@ let mover = {
         //Если ходит пешка - превращаем ее в фигуру
         if (figureChoiced.figureName === 'pawn') {
             this.pawnUpdate(cell);
-        };
+        }
 
         //Очищаем доску от подсветки
         figureChoiced.clear();
@@ -68,7 +68,7 @@ let mover = {
     opponentKill(cell) {
         if (cell.firstChild !== null) {
             cell.firstChild.remove();
-        };
+        }
     },
 
     /**
@@ -155,7 +155,7 @@ let mover = {
                     cell.removeAttribute("data-castling");
                 }
             });
-        };
+        }
 
     },
 
@@ -169,7 +169,7 @@ let mover = {
         } else {
             this.player = PLAYER_WHITE;
             document.querySelector('.player').innerText = "Ход белых";
-        };
+        }
     },
 
     /**
@@ -206,8 +206,5 @@ let mover = {
         let cell = figureChoiced.searchCell(event.currentTarget.dataset.x, event.currentTarget.dataset.y);
         cell.innerHTML = figure;
         event.path[5].remove();
-
-
     }
-
-}
+};
