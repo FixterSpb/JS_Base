@@ -198,12 +198,11 @@ let cart = {
                 if (--products[index].id !== 0) {
                     break;
                 }
-                case "remove":
-                    delete products[index];
-        };
+            case "remove":
+                delete products[index];
+        }
         console.dir(button.parentNode);
         console.dir(button.parentNode.parentNode);
         console.log(button.parentNode.parentNode.dataset.id);
     }
-
-}
+};

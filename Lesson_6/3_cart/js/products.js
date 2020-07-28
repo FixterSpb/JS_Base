@@ -21,7 +21,7 @@ let products = {
     /**
      * Метод добавляет товар на страницу
      * @param {number} id id товара
-     * @param {sting} productName Название товара
+     * @param {string} productName Название товара
      * @param {string} imgSrc Ссылка на изображение товара
      * @param {number} productPrice Цена
      */
