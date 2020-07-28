@@ -152,7 +152,7 @@ let cart = {
         tr.dataset.id = id;
 
         this.createHtmlElement('td', [], name, tr);
-        this.createHtmlElement('td', ['text-center'], price + ' руб.', tr, "price");
+        this.createHtmlElement('td', ['text-center'], `${price} руб.`, tr, "price");
         let td = this.createHtmlElement('td', ['text-center'], "", tr);
 
         let button = this.createHtmlElement('i', ["fas", "fa-minus-circle", "cart__bnTable", "cart__bnTable_disable"], "", td);
@@ -164,7 +164,7 @@ let cart = {
         button.dataset.action = "increment";
 
         this.setButtonClick(button);
-        this.createHtmlElement('td', ['text-center'], price + ' руб.', tr, "sum");
+        this.createHtmlElement('td', ['text-center'], `${price} руб.`, tr, "sum");
         td = this.createHtmlElement('td', ['text-center'], "", tr);
         button = this.createHtmlElement('i', ["fas", "fa-trash-alt", "cart__bnTable"], "", td);
         button.dataset.action = "remove";
